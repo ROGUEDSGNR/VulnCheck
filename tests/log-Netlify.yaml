@@ -1,0 +1,84 @@
+PS C:\Users\Tiago\Documents\wr3nch\VulnCheck> python vulncheck.py roguedsgnr.com -fc
+Starting security scan on roguedsgnr.com
+
+Firewall Circumvention Test enabled.
+
+
+Security Scan Results:
+
+✔ Passed Tests:
+
+SSL/TLS Check: ✔ Passed
+Details: SSL certificate is valid. Expiry date: 2024-11-17 19:04:04+00:00 (57 days left)
+
+✖ Failed Tests:
+
+File Upload Vulnerability: ✖ Failed
+Details: File upload test failed: ('Received response with content-encoding: gzip, but failed to decode it.', error('Error -3 while decompressing data: incorrect header check'))
+Remediation: Ensure proper validation and sanitization of uploaded files.
+
+⚠ Tests Blocked by Firewall:
+
+Cookie Security Settings: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+CSRF Protection: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+HTTP Headers Check: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Clickjacking Vulnerability: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Directory Traversal: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Third-Party Library Vulnerabilities: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+XSS Vulnerability: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+SQL Injection Vulnerability: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Adjust firewall rules or whitelist this tool during testing.
+
+Sensitive Data Exposure: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Unvalidated Redirects and Forwards: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Security Misconfiguration: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Content Discovery: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Broken Authentication and Session Management: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Insecure Direct Object References: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+HTTP Methods Allowed: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - Netlify
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Firewall Circumvention Test: ⚠ Blocked by Firewall
+Details: All firewall circumvention attempts were blocked by the firewall.
+PS C:\Users\Tiago\Documents\wr3nch\VulnCheck>

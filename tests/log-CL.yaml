@@ -1,0 +1,111 @@
+PS C:\Users\Tiago\Documents\wr3nch\VulnCheck> python vulncheck.py pmelp.pt -fc
+Starting security scan on pmelp.pt
+
+Firewall Circumvention Test enabled.
+
+
+Security Scan Results:
+
+✔ Passed Tests:
+
+SSL/TLS Check: ✔ Passed
+Details: SSL certificate is valid. Expiry date: 2024-11-08 11:42:23+00:00 (47 days left)
+
+✖ Failed Tests:
+
+Broken Authentication and Session Management: ✖ Failed
+Details: Authentication test failed: HTTPSConnectionPool(host='pmelp.pt', port=443): Read timed out. (read timeout=5)
+Remediation: Ensure that your authentication and session management mechanisms are secure.
+
+Cookie Security Settings: ✖ Failed
+Details: Cookie settings check failed: HTTPSConnectionPool(host='pmelp.pt', port=443): Read timed out. (read timeout=5)
+Remediation: Ensure that your application sets cookies with secure attributes.
+
+Directory Traversal: ✖ Failed
+Details: Directory traversal test failed: HTTPSConnectionPool(host='pmelp.pt', port=443): Read timed out. (read timeout=5)
+Remediation: Ensure proper input validation in your application.
+
+Third-Party Library Vulnerabilities: ✖ Failed
+Details: Third-party vulnerabilities check failed: HTTPSConnectionPool(host='pmelp.pt', port=443): Read timed out. (read timeout=5)
+Remediation: Regularly update third-party libraries to mitigate known vulnerabilities.
+
+⚠ Tests Blocked by Firewall:
+
+XSS Vulnerability: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+CSRF Protection: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+SQL Injection Vulnerability: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Adjust firewall rules or whitelist this tool during testing.
+
+Unvalidated Redirects and Forwards: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+File Upload Vulnerability: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Sensitive Data Exposure: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Security Misconfiguration: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Content Discovery: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+HTTP Methods Allowed: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+HTTP Headers Check: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Clickjacking Vulnerability: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Insecure Direct Object References: ⚠ Blocked by Firewall
+Details: Test blocked by firewall.  Detected firewall header: Server - cloudflare
+Remediation: Ensure that your firewall settings are not overly restrictive or whitelist this tool for accurate testing.
+
+Firewall Circumvention Test: ⚠ Blocked by Firewall
+Details:
+Firewall detected using technique: Randomized Case on path /vulnerable_endpoint -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Base64 + URL Encoding on path /vulnerable_endpoint -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: JavaScript Injection on path /vulnerable_endpoint - Potential firewall detected: HTTP status code 403. Detected firewall header: Server - cloudflare
+Firewall detected using technique: Hex Mixed Encoding on path /vulnerable_endpoint -  Detected firewall header: Server - cloudflare
+Test failed for Unicode Obfuscation on path /vulnerable_endpoint: HTTPSConnectionPool(host='pmelp.pt', port=443): Read timed out. (read timeout=15)
+Firewall detected using technique: Randomized Case on path /login -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Base64 + URL Encoding on path /login -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: JavaScript Injection on path /login - Potential firewall detected: HTTP status code 403. Detected firewall header: Server - cloudflare
+Firewall detected using technique: Hex Mixed Encoding on path /login -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Unicode Obfuscation on path /login -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Randomized Case on path /admin -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Base64 + URL Encoding on path /admin -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: JavaScript Injection on path /admin - Potential firewall detected: HTTP status code 403. Detected firewall header: Server - cloudflare
+Firewall detected using technique: Hex Mixed Encoding on path /admin -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Unicode Obfuscation on path /admin -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Randomized Case on path /search -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Base64 + URL Encoding on path /search -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: JavaScript Injection on path /search - Potential firewall detected: HTTP status code 403. Detected firewall header: Server - cloudflare
+Firewall detected using technique: Hex Mixed Encoding on path /search -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Unicode Obfuscation on path /search -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Randomized Case on path /api -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Base64 + URL Encoding on path /api -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: JavaScript Injection on path /api - Potential firewall detected: HTTP status code 403. Detected firewall header: Server - cloudflare
+Firewall detected using technique: Hex Mixed Encoding on path /api -  Detected firewall header: Server - cloudflare
+Firewall detected using technique: Unicode Obfuscation on path /api -  Detected firewall header: Server - cloudflare
+Remediation: Ensure firewall rules are comprehensive to detect evasion techniques.
+
+PS C:\Users\Tiago\Documents\wr3nch\VulnCheck>
