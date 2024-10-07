@@ -1,113 +1,117 @@
-# VulnCheck
-VulnCheck is a command-line security scanning tool written in Python. It allows users to perform comprehensive security assessments on their websites or domains by checking for common vulnerabilities and misconfigurations. VulnCheck is designed to be easy to use, providing actionable insights and remediation advice directly in the terminal.
+# VulnCheck Security Scanner
 
-### **Overview of the VulnCheck Tool**
+## Overview
 
-1. **Main Script (`vulncheck.py`):**
-
-   - **Purpose**: Acts as the entry point of the application.
-   - **Functionality**:
-     - Accepts a domain as a command-line argument.
-     - Validates the domain format.
-     - Optionally enables firewall circumvention tests with the `-fc` flag.
-     - Initializes a dictionary to store test results categorized as `passed`, `failed`, or `firewall_blocked`.
-     - Defines a list of test functions imported from various modules in the `tests` directory.
-     - Executes tests in parallel using `ThreadPoolExecutor` for efficiency.
-     - Collects and categorizes the results from each test.
-     - Displays the results with color-coded output for better readability using the `termcolor` library.
-
-2. **Test Modules (Located in the `tests` Directory):**
-
-   - **Modules Included**:
-     - `ssl_tls`: Checks SSL/TLS certificate validity and configuration.
-     - `headers`: Analyzes HTTP headers for security configurations.
-     - `xss`: Tests for Cross-Site Scripting vulnerabilities.
-     - `sql_injection`: Checks for SQL Injection vulnerabilities.
-     - `content_discovery`: Attempts to discover hidden or unlinked content.
-     - `csrf`: Verifies the presence of Cross-Site Request Forgery protection.
-     - `directory_traversal`: Tests for Directory Traversal vulnerabilities.
-     - `idor`: Checks for Insecure Direct Object References.
-     - `file_upload`: Tests for insecure file upload functionalities.
-     - `unvalidated_redirects`: Looks for unvalidated redirects and forwards.
-     - `security_misconfiguration`: Checks for common security misconfigurations.
-     - `sensitive_data_exposure`: Scans for exposure of sensitive data.
-     - `authentication`: Tests for broken authentication and session management.
-     - `http_methods`: Analyzes allowed HTTP methods for potential risks.
-     - `cookie_settings`: Checks the security settings of cookies.
-     - `clickjacking`: Tests for Clickjacking vulnerabilities.
-     - `third_party_vulnerabilities`: Scans for known vulnerabilities in third-party libraries.
-
-   - **Firewall Circumvention Test (`firewall_circumvention.py`)**:
-     - **Purpose**: Attempts to bypass web application firewalls (WAFs) using various evasion techniques.
-     - **Techniques Used**:
-       - Standard SQL Injection.
-       - URL Encoding, Hex Encoding, Multiple Encoding (combination of URL, Base64, Hex).
-       - Case Manipulation (randomly changing the case of payload characters).
-       - Adding Padding or Junk Data to the payload.
-       - Injecting Spaces into SQL keywords.
-       - HTTP Header Smuggling.
-       - Using Non-standard HTTP Methods (e.g., `PROPFIND`).
-       - Chunked Transfer Encoding.
-       - Timing-based Delays.
-       - Null Byte Injection.
-       - Testing with different HTTP protocol versions (HTTP/2 and HTTP/3).
-
-     - **Workflow**:
-       - Iterates over a list of common endpoints (e.g., `/login`, `/admin`).
-       - Applies each evasion technique to the payload.
-       - Sends HTTP requests using the specified method and payload.
-       - Checks if the firewall blocks the request using the `check_for_firewall` function.
-       - Records the result and provides remediation suggestions if the firewall is bypassed.
-
-3. **Result Presentation:**
-
-   - **Categorization**: Test results are categorized into:
-     - **Passed Tests**: No issues found.
-     - **Failed Tests**: Vulnerabilities detected.
-     - **Tests Blocked by Firewall**: Attempts blocked by a firewall or security mechanism.
-   - **Output**: Results are displayed with color-coded symbols and messages:
-     - **✔ Passed**: Green color for successful tests.
-     - **✖ Failed**: Red color for tests where vulnerabilities were found.
-     - **⚠ Blocked by Firewall**: Yellow color for tests blocked by firewalls.
+**VulnCheck** is a Python-based security scanning tool designed for educational purposes and authorized security assessments. It performs a comprehensive security scan on a target domain by running various tests to identify potential vulnerabilities, including options to test firewall circumvention techniques.
 
 ---
 
-### **How the Tool Works**
+## Disclaimer
 
-1. **Running the Tool:**
-
-   - Execute the script from the command line:
-     ```bash
-     python vulncheck.py example.com
-     ```
-   - To enable firewall circumvention tests:
-     ```bash
-     python vulncheck.py example.com -fc
-     ```
-
-2. **Domain Validation:**
-
-   - The tool first validates the domain format using a regular expression to ensure it's correctly structured before proceeding with the tests.
-
-3. **Executing Tests in Parallel:**
-
-   - Utilizes `ThreadPoolExecutor` to run multiple tests concurrently, reducing the total scan time.
-
-4. **Collecting and Processing Results:**
-
-   - Each test function returns a result dictionary with:
-     - **status** (`True` for pass, `False` for fail).
-     - **details**: Additional information about the test outcome.
-     - **remediation**: Suggestions for fixing any issues found.
-
-5. **Displaying the Results:**
-
-   - The tool prints a summary of all tests, categorized and color-coded for clarity.
-   - Provides detailed information and remediation steps for failed tests.
+> **Warning:** This tool is intended for use on domains and systems for which you have explicit permission to perform security testing. Unauthorized scanning of systems without permission may be illegal and unethical. Always ensure you comply with all applicable laws and regulations.
 
 ---
 
-### **Example Output**
+## Features
+
+- **SSL/TLS Certificate Checks:** Validates the SSL/TLS certificate configuration.
+- **HTTP Headers Analysis:** Inspects HTTP headers for security configurations.
+- **Vulnerability Scanning:**
+  - Cross-Site Scripting (XSS)
+  - SQL Injection
+  - Cross-Site Request Forgery (CSRF)
+  - Directory Traversal
+  - Insecure Direct Object References (IDOR)
+  - File Upload Vulnerabilities
+  - Unvalidated Redirects and Forwards
+  - Security Misconfigurations
+  - Sensitive Data Exposure
+  - Broken Authentication and Session Management
+  - Clickjacking
+- **Content Discovery:** Attempts to find hidden or unlinked content.
+- **HTTP Methods Analysis:** Evaluates allowed HTTP methods for potential risks.
+- **Cookie Security Settings:** Checks for secure cookie attributes.
+- **Third-Party Library Vulnerabilities:** Scans for known vulnerabilities in third-party libraries.
+- **Firewall Circumvention Tests (Optional):** Attempts to bypass web application firewalls using various evasion techniques.
+
+---
+
+## Installation
+
+### Prerequisites
+
+- Python 3.6 or higher
+- `pip` package manager
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/ROGUEDSGNR/vulncheck.git
+cd vulncheck
+```
+
+### Install Dependencies
+
+It's recommended to use a virtual environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+
+pip install -r requirements.txt
+```
+
+**Ensure `requirements.txt` includes all necessary packages:**
+
+```
+requests
+termcolor
+concurrent.futures
+[other dependencies]
+```
+
+---
+
+## Usage
+
+### Basic Scan
+
+To perform a basic security scan on a target domain:
+
+```bash
+python vulncheck.py example.com
+```
+
+### Enable Firewall Circumvention Tests
+
+To include firewall circumvention tests, use the `-fc` or `--firewall-circumvention` flag:
+
+```bash
+python vulncheck.py example.com -fc
+```
+
+### Command-Line Options
+
+- `domain`: The target domain to scan (required).
+- `-fc`, `--firewall-circumvention`: Enables firewall circumvention tests (optional).
+
+### Example
+
+```bash
+python vulncheck.py example.com -fc
+```
+
+---
+
+## Output
+
+The tool provides color-coded output for easy interpretation:
+
+- **✔ Passed Tests**: Green color indicates tests that passed with no issues found.
+- **✖ Failed Tests**: Red color indicates vulnerabilities detected.
+- **⚠ Tests Blocked by Firewall**: Yellow color indicates tests blocked by a firewall or security mechanism.
+
+### Sample Output
 
 ```plaintext
 Starting security scan on example.com
@@ -142,69 +146,185 @@ Details: Firewall detected using technique: URL Encoded on path /admin - WAF res
 
 ---
 
-### **Key Features and Benefits**
+## Configuration
 
-- **Modular Design**: Easy to add or remove tests without altering the main script significantly.
-- **Extensibility**: New tests can be added by creating additional modules in the `tests` directory and importing them in `vulncheck.py`.
-- **Parallel Execution**: Improves efficiency by running tests concurrently.
-- **Detailed Reporting**: Provides actionable insights and remediation steps for any vulnerabilities found.
-- **Optional Firewall Testing**: Can test the effectiveness of WAFs and identify potential evasion techniques.
+### Customizing Tests
 
----
+You can customize the tests by modifying or adding modules in the `tests` directory. Each test module should contain a function that performs the test and returns a result dictionary with the following keys:
 
-### **How to Use the Tool**
+- `status`: `True` if the test passed, `False` if it failed.
+- `details`: A string providing details about the test outcome.
+- `remediation`: Suggested steps to remediate any issues found.
 
-1. **Setup Environment:**
+### Adjusting Concurrency
 
-   - Install the required Python packages (e.g., `requests`, `termcolor`, `concurrent.futures`).
-   - Use a virtual environment to manage dependencies.
+By default, the tool runs tests concurrently using all available CPU cores. To adjust the number of concurrent threads, modify the `max_workers` parameter in `vulncheck.py`:
 
-2. **Run the Tool:**
-
-   - Execute the script with the target domain.
-   - Use the `-fc` flag if you wish to include firewall circumvention tests.
-
-3. **Review Results:**
-
-   - Analyze the output to identify any vulnerabilities.
-   - Follow the remediation steps provided for any failed tests.
-
-4. **Customize Tests:**
-
-   - Modify existing test modules or add new ones as needed.
-   - Ensure that each test function returns a consistent result dictionary.
+```python
+with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+    # Your code here
+```
 
 ---
 
-### **Considerations and Best Practices**
+## Development
 
-- **Authorization**: Always ensure you have explicit permission to perform security scans on the target domain to comply with legal and ethical standards.
+### Adding New Tests
 
-- **Resource Management**: Be cautious with the number of concurrent threads to avoid overwhelming the target server or violating any usage policies.
+1. **Create a New Test Module**
 
-- **Updates and Maintenance**:
+   - Navigate to the `tests` directory.
+   - Create a new Python file, e.g., `my_new_test.py`.
 
-  - Keep the tool and its dependencies updated to incorporate the latest security checks and best practices.
-  - Regularly review and update test modules to handle new types of vulnerabilities.
+2. **Implement the Test Function**
 
-- **Logging and Reporting**:
+   ```python
+   # tests/my_new_test.py
 
-  - Consider implementing a logging mechanism to save scan results to a file for future reference.
-  - Enhance the reporting format to include timestamps and more detailed context if needed.
+   def test_my_new_vulnerability(domain):
+       result = {'status': True, 'details': '', 'remediation': ''}
+       # Implement your test logic here
+       return result
+   ```
+
+3. **Import the Test Module**
+
+   In `vulncheck.py`, add the import statement:
+
+   ```python
+   from tests import my_new_test
+   ```
+
+4. **Add the Test Function to the Test List**
+
+   ```python
+   test_functions = [
+       # Existing tests...
+       ('My New Vulnerability Test', my_new_test.test_my_new_vulnerability),
+   ]
+   ```
 
 ---
 
-### **Next Steps**
+## Best Practices
 
-- **Troubleshooting Errors**:
-
-  - If you encounter specific errors (like the Selenium error), inspect the relevant test module.
-  - Ensure that any web elements referenced in your Selenium scripts exist on the target page.
-
-- **Future Enhancements**:
-
-  - **User Interface**: Develop a GUI or web-based interface for users who prefer not to use the command line.
-  - **Configuration Files**: Allow users to specify settings and options via a configuration file.
-  - **Automated Updates**: Implement a mechanism to automatically update test modules with the latest vulnerability checks.
+- **Authorized Testing Only:** Always ensure you have explicit permission to scan the target domain.
+- **Stay Updated:** Regularly update the tool and its dependencies to incorporate the latest security checks.
+- **Ethical Use:** Use the tool responsibly and ethically, adhering to all applicable laws and regulations.
+- **Performance Considerations:** Be cautious with the number of concurrent threads to avoid overwhelming the target server.
 
 ---
+
+## Troubleshooting
+
+### Common Issues
+
+- **Permission Errors:** Ensure you have the necessary permissions to execute the script and access network resources.
+- **Dependency Conflicts:** Verify that all required packages are installed and up-to-date.
+- **Firewall Circumvention Test Failures:** If tests are failing due to exceptions (e.g., Selenium errors), ensure that the test scripts are correctly implemented and that all dependencies (like web drivers) are properly configured.
+
+### Selenium Errors
+
+If you encounter Selenium errors during the firewall circumvention tests:
+
+- **Check WebDriver Compatibility:** Ensure the ChromeDriver version matches your installed version of Chrome.
+- **Update Selectors:** Verify that the web elements your test scripts are interacting with exist on the target pages.
+- **Implement Waits:** Use explicit waits to handle dynamic content loading.
+
+---
+
+## Contribution Guidelines
+
+We welcome contributions from the community!
+
+### Steps to Contribute
+
+1. **Fork the Repository**
+
+   Click on the "Fork" button at the top right corner of the GitHub repository page.
+
+2. **Clone Your Fork**
+
+   ```bash
+   git clone https://github.com/ROGUEDSGNR/vulncheck.git
+   cd vulncheck
+   ```
+
+3. **Create a Feature Branch**
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+4. **Make Changes**
+
+   - Add new features or fix bugs.
+   - Write tests for your new code.
+   - Ensure existing tests pass.
+
+5. **Commit Your Changes**
+
+   ```bash
+   git commit -am "Add new feature or fix"
+   ```
+
+6. **Push to Your Fork**
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+7. **Submit a Pull Request**
+
+   Open a pull request to the main repository with a detailed description of your changes.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this software per the license terms.
+
+---
+
+## Support and Contact
+
+If you have any questions, issues, or suggestions, please open an issue on the GitHub repository or contact the maintainers directly.
+
+- **GitHub Issues:** [https://github.com/yourusername/vulncheck/issues](https://github.com/ROGUEDSGNR/vulncheck/issues)
+- **Email:** [hello@roguedsgnr.com](hello@roguedsgnr.com)
+
+---
+
+## Acknowledgments
+
+- **Contributors:** Thank you to all the contributors who have helped improve VulnCheck.
+- **Community:** Inspired by the security community and resources like OWASP.
+- **Libraries Used:** This tool utilizes several open-source libraries, including `requests`, `termcolor`, and others.
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+### Is it legal to use VulnCheck on any website?
+
+No, you must have explicit permission to perform security scans on a website. Unauthorized scanning can be illegal and unethical.
+
+### Can I add my own tests?
+
+Yes, the tool is designed to be extensible. You can add new test modules following the guidelines in the [Development](#development) section.
+
+### How do I report a bug or request a feature?
+
+Please open an issue on the GitHub repository with detailed information.
+
+---
+
+## Additional Resources
+
+- **OWASP Top Ten Security Risks:** [https://owasp.org/www-project-top-ten/](https://owasp.org/www-project-top-ten/)
+- **Python Documentation:** [https://docs.python.org/3/](https://docs.python.org/3/)
+- **Termcolor Documentation:** [https://pypi.org/project/termcolor/](https://pypi.org/project/termcolor/)
+
+---
+
+**Note:** Always use VulnCheck responsibly and ethically. The developer is not responsible for any misuse of this tool.
