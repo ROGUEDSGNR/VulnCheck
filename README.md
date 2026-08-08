@@ -281,8 +281,8 @@ This project is licensed under the [MIT License](LICENSE). You are free to use, 
 
 If you have any questions, issues, or suggestions, please open an issue on the GitHub repository or contact the maintainers directly.
 
-- **GitHub Issues:** [https://github.com/yourusername/vulncheck/issues](https://github.com/ROGUEDSGNR/vulncheck/issues)
-- **Email:** [hello@roguedsgnr.com](hello@roguedsgnr.com)
+- **GitHub Issues:** [https://github.com/0x5244/vulncheck/issues](https://github.com/0x5244/vulncheck/issues)
+- **Email:** [hello@0x5244.com](hello@0x5244.com)
 
 ---
 
